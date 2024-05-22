@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="d-flex justify-content-between m-5">
+        <h4>
+            <strong>Employee List</strong>
+        </h4>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployee">Add Employee</button>
+    </div>
+    <div class="row m-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let employee of allEmployees; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.contact }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.address }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+
+
+    <!-- Add Employee Modal -->
+    <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addEmployeeTitle">Add Employee</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="addEmployeeForm" (ngSubmit)="addEmployee()">
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Contact No</label>
+                  <input type="text" class="form-control" formControlName="contact">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" formControlName="email">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Address</label>
+                  <input type="text" class="form-control" formControlName="address">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="addEmployeeForm.invalid">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
